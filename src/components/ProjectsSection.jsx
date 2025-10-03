@@ -5,38 +5,28 @@ const projects = [
     id: 1,
     title: "ScholarShare – Collaborative Research-Sharing Platform",
     description: "Developed user dashboard with research paper viewing, download functionality, and wishlist features with review and rating system.",
-    image: "/projects/scholarshare.png",
+    image: "/projects/scholarshare.jpeg",
     tags: ["Next.js", "TypeScript", "MongoDB", "Tailwind CSS", "OAuth"],
-    demoUrl: "https://scholarshare.vercel.app",
+    demoUrl: "https://scholarshare21-mflp.vercel.app",
     githubUrl: "https://github.com/lisorthman/Scholarshare21",
   },
   {
     id: 2,
     title: "MindCue – Weather & Location-Based Activity & Music Recommendations",
     description: "Implemented real-time weather and mood-based recommendations with AI-generated suggestions using multiple APIs.",
-    image: "/projects/mindcue.png",
+    image: "/projects/mindcue.jpeg",
     tags: ["Ballerina", "React.js", "Weather API", "Spotify API", "Gemini AI"],
-    demoUrl: "#",
+    demoUrl: "https://youtu.be/3k99-wnjD1E",
     githubUrl: "https://github.com/lisorthman/iwb25-299-technovate",
   },
   {
     id: 3,
     title: "Student Management System – Laravel Web App",
     description: "Full-featured student management system with CRUD operations, secure authentication, and role-based access control.",
-    image: "/projects/student-management.png",
+    image: "/projects/studentmanagement.jpeg",
     tags: ["Laravel", "PHP", "MySQL", "Blade", "JavaScript"],
     demoUrl: "#",
     githubUrl: "https://github.com/sinthujan23/student-management-system",
-  },
-  {
-    id: 4,
-    title: "LocalHands – Mobile Platform for Local Service Providers",
-    description: "Developing mobile app to connect customers with verified local service providers with AI-driven matching and real-time features.",
-    image: "/projects/localhands.png",
-    tags: ["Flutter", "Node.js", "PostgreSQL", "Firebase", "Google Maps API"],
-    demoUrl: "#",
-    githubUrl: "#",
-    status: "Ongoing"
   },
 ];
 
@@ -53,7 +43,7 @@ export const ProjectsSection = () => {
           and passion for creating impactful software solutions.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, key) => (
             <div
               key={key}
@@ -64,14 +54,26 @@ export const ProjectsSection = () => {
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  onError={(e) => {
+                    // If image fails to load, show placeholder
+                    e.target.style.display = 'none';
+                    e.target.nextSibling.style.display = 'flex';
+                  }}
                 />
-                {project.status && (
-                  <div className="absolute top-3 right-3">
-                    <span className="px-3 py-1 bg-yellow-500 text-white text-xs font-medium rounded-full">
-                      {project.status}
-                    </span>
+                {/* Fallback placeholder */}
+                <div 
+                  className="hidden h-full w-full bg-gradient-to-br from-gray-100 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center"
+                >
+                  <div className="text-center p-4">
+                    <div className="text-4xl mb-2">📱</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                      {project.title.split('–')[0].trim()}
+                    </div>
+                    <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                      Image not found
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
 
               <div className="p-6">
@@ -101,7 +103,7 @@ export const ProjectsSection = () => {
                         className="flex items-center gap-1 text-foreground/80 hover:text-primary transition-colors duration-300 text-sm font-medium"
                       >
                         <ExternalLink size={16} />
-                        Live Demo
+                        {project.demoUrl.includes('youtu.be') ? 'Watch Demo' : 'Live Demo'}
                       </a>
                     )}
                     {project.githubUrl !== "#" && (

@@ -19,7 +19,7 @@ export const AboutSection = () => {
             </h3>
 
             <p className="text-muted-foreground text-lg leading-relaxed">
-              I'm a dedicated third-year IT & Management undergraduate at the University of Moratuwa, 
+              I'm an IT & Management undergraduate at the University of Moratuwa, 
               where I'm pursuing my B.Sc. (Hons) degree. My journey in technology is driven by a 
               genuine curiosity for how digital solutions can transform ideas into impactful realities.
             </p>
